@@ -1,0 +1,226 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Global Reset & Base ─────────────────────────────────────────────────── */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-ocean-deepest text-sand-light font-body overflow-x-hidden;
+  }
+}
+
+/* ─── Glass Morphism System (Apple-inspired) ──────────────────────────────── */
+@layer components {
+
+  /* Primary glass button — Apple visionOS style */
+  .btn-glass {
+    @apply relative inline-flex items-center justify-center gap-2
+           px-7 py-3.5 rounded-full
+           text-sm font-semibold tracking-wide
+           transition-all duration-300 ease-out
+           cursor-pointer select-none outline-none;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    box-shadow:
+      0 4px 24px rgba(0, 0, 0, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.35),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  }
+
+  .btn-glass:hover {
+    background: rgba(255, 255, 255, 0.20);
+    border-color: rgba(255, 255, 255, 0.35);
+    box-shadow:
+      0 8px 40px rgba(0, 0, 0, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.45),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+  }
+
+  .btn-glass:active {
+    transform: translateY(0);
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  /* Sunset CTA button */
+  .btn-sunset {
+    @apply relative inline-flex items-center justify-center gap-2
+           px-8 py-4 rounded-full
+           text-sm font-bold tracking-wide text-white
+           transition-all duration-300 ease-out
+           cursor-pointer select-none outline-none overflow-hidden;
+    background: linear-gradient(135deg, #FF6B35 0%, #FFB347 50%, #FF5F7E 100%);
+    box-shadow:
+      0 4px 24px rgba(255, 107, 53, 0.45),
+      inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  }
+
+  .btn-sunset::before {
+    content: '';
+    @apply absolute inset-0 rounded-full opacity-0 transition-opacity duration-300;
+    background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 60%);
+  }
+
+  .btn-sunset:hover {
+    transform: translateY(-3px);
+    box-shadow:
+      0 12px 40px rgba(255, 107, 53, 0.6),
+      0 4px 16px rgba(255, 107, 53, 0.3);
+  }
+
+  .btn-sunset:hover::before {
+    @apply opacity-100;
+  }
+
+  .btn-sunset:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 16px rgba(255, 107, 53, 0.4);
+  }
+
+  /* Buy Now — primary product action */
+  .btn-buy {
+    @apply relative w-full py-3.5 rounded-2xl
+           text-sm font-bold tracking-wide text-white
+           transition-all duration-300 ease-out
+           cursor-pointer select-none outline-none overflow-hidden;
+    background: linear-gradient(135deg, #FF6B35, #FF5F7E);
+    box-shadow:
+      0 4px 20px rgba(255, 107, 53, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  .btn-buy:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 8px 32px rgba(255, 107, 53, 0.55),
+      inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  }
+
+  .btn-buy:active {
+    transform: translateY(0);
+  }
+
+  /* Glass card */
+  .glass-card {
+    @apply relative rounded-3xl overflow-hidden;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px) saturate(150%);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow:
+      0 8px 40px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .glass-card:hover {
+    border-color: rgba(255, 179, 71, 0.35);
+    box-shadow:
+      0 16px 60px rgba(0, 0, 0, 0.5),
+      0 0 40px rgba(255, 179, 71, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+
+  /* Frosted panel (sections) */
+  .glass-panel {
+    background: rgba(10, 22, 40, 0.6);
+    backdrop-filter: blur(40px) saturate(180%);
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  /* Section heading gradient */
+  .heading-gradient {
+    @apply font-heading font-black bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #FFB347 0%, #FF6B35 40%, #FF5F7E 80%, #E84393 100%);
+  }
+
+  /* Subtle text gradient for smaller accents */
+  .text-gradient-ocean {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #4ECDC4, #2E6B9E);
+  }
+
+  /* Scrolling shimmer line */
+  .shimmer-line {
+    background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(255, 179, 71, 0.6) 45%,
+      rgba(255, 255, 255, 0.9) 50%,
+      rgba(255, 179, 71, 0.6) 55%,
+      transparent 100%
+    );
+    background-size: 200% auto;
+    animation: shimmer 3s linear infinite;
+  }
+
+  /* Tag pill */
+  .tag-pill {
+    @apply absolute top-3 left-3 z-10 px-3 py-1 rounded-full text-xs font-bold text-white;
+    backdrop-filter: blur(10px);
+  }
+}
+
+/* ─── Scrollbar ───────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #01060E; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #FF6B35, #FFB347);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #FF5F7E, #FF6B35);
+}
+
+/* ─── Animations ──────────────────────────────────────────────────────────── */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-12px) rotate(1deg); }
+  66% { transform: translateY(-6px) rotate(-1deg); }
+}
+
+@keyframes waveIn {
+  from { clip-path: inset(0 100% 0 0); opacity: 0; }
+  to { clip-path: inset(0 0% 0 0); opacity: 1; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.05); }
+}
+
+.animate-float { animation: float 7s ease-in-out infinite; }
+.animate-fadeUp { animation: fadeUp 0.8s ease-out forwards; }
+.animate-glowPulse { animation: glowPulse 4s ease-in-out infinite; }
+
+/* Staggered delays */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-700 { animation-delay: 0.7s; }
+
+/* ─── Stripe Modal Overrides ─────────────────────────────────────────────── */
+.stripe-form-container {
+  --stripe-colorPrimary: #FF6B35;
+  --stripe-colorBackground: #0A1628;
+  --stripe-colorText: #FFF9F0;
+  --stripe-colorDanger: #FF5F7E;
+  --stripe-fontFamily: 'Inter', sans-serif;
+  --stripe-borderRadius: 12px;
+}
